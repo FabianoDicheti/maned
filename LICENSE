@@ -1,0 +1,72 @@
+Maned — End User License Agreement
+Copyright (c) 2026 Fabiano Dicheti. All rights reserved.
+
+By downloading, installing or using the Maned software ("the Software" — the
+maned-run, maned-serve and maned-lint programs and any accompanying files),
+you agree to the terms below. If you do not agree, do not use the Software.
+
+
+1. GRANT OF LICENSE
+
+You are granted a worldwide, royalty-free, non-exclusive licence to install
+and use the Software, on any number of machines, for any purpose — personal,
+academic, or commercial, including in production and including work you are
+paid for. No fee, registration or notification is required.
+
+You may create, run and distribute programs written in the Maned language, and
+any output the Software produces, without restriction. Your programs and your
+data are yours; this licence does not claim any interest in them.
+
+
+2. RESTRICTIONS
+
+You may not:
+
+  (a) redistribute, resell, sublicense, rent, lease or publish the Software,
+      or host it as part of a service that offers the Software itself to third
+      parties, without prior written permission;
+
+  (b) reverse engineer, decompile or disassemble the Software, or attempt to
+      derive its source code, except to the extent that this restriction is
+      expressly prohibited by applicable law;
+
+  (c) remove, obscure or alter any copyright, licence or attribution notice in
+      the Software or its accompanying files.
+
+Section 2(a) does not prevent you from directing others to the official
+download location, or from using a package manager that fetches the Software
+from that location on your behalf.
+
+
+3. NO OBLIGATION TO SUPPORT
+
+Nothing in this licence obliges the copyright holder to provide support,
+updates, bug fixes, or continued availability of any download location.
+
+
+4. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+
+5. LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+
+
+6. RESERVATION OF RIGHTS
+
+The Software is licensed, not sold. All rights not expressly granted above are
+reserved by the copyright holder. The source code of the Software is not
+published and is not part of this distribution.
+
+
+7. THIRD-PARTY COMPONENTS
+
+The Software includes third-party components under their own terms. See
+THIRD_PARTY_NOTICES.md, distributed alongside this file.
