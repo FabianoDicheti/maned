@@ -20,7 +20,7 @@ maned-run --version
 ```
 
 ```
-maned-run 0.1.1
+maned-run 0.2.0
 build: b6c94fa (aarch64-apple-darwin)
 ```
 
@@ -55,7 +55,7 @@ By default they go to `/usr/local/bin` if you can write there, and
 
 ```sh
 # install a specific release instead of the latest
-curl -fsSL https://fabianodicheti.github.io/maned/install.sh | sh -s -- --version 0.1.1
+curl -fsSL https://fabianodicheti.github.io/maned/install.sh | sh -s -- --version 0.2.0
 
 # install somewhere else
 curl -fsSL https://fabianodicheti.github.io/maned/install.sh | sh -s -- --prefix ~/tools
@@ -82,8 +82,8 @@ Download a tarball from the
 [releases page](https://github.com/FabianoDicheti/maned/releases), then:
 
 ```sh
-tar -xzf maned-0.1.1-<target>.tar.gz
-cd maned-0.1.1-<target>
+tar -xzf maned-0.2.0-<target>.tar.gz
+cd maned-0.2.0-<target>
 sudo cp bin/* /usr/local/bin/                      # everyone
 mkdir -p ~/.local/bin && cp bin/* ~/.local/bin/    # just you
 ```
@@ -132,14 +132,22 @@ differs.
 ## Editor support
 
 A VS Code extension provides syntax highlighting and a `.mnd` file icon.
-Download `maned-lang-0.1.1.vsix` from the
-[releases page](https://github.com/FabianoDicheti/maned/releases) and:
+Download it and install it by path — these two lines work from any directory:
 
 ```sh
-code --install-extension maned-lang-0.1.1.vsix
+curl -fsSLO https://github.com/FabianoDicheti/maned/releases/latest/download/maned-lang-0.2.0.vsix
+code --install-extension ./maned-lang-0.2.0.vsix
 ```
 
-Or in VS Code: **Extensions** → `…` menu → **Install from VSIX…**
+`code --install-extension` resolves a **relative path against your current
+directory**, not against your downloads folder. If you fetched the `.vsix`
+with a browser instead, give it the real path — for example
+`code --install-extension ~/Downloads/maned-lang-0.2.0.vsix` — or `cd` there
+first. A bare filename that is not in the current directory is what produces
+*no such file or directory*.
+
+Or skip the command line entirely — in VS Code: **Extensions** → `…` menu →
+**Install from VSIX…**
 
 Syntax highlighting works immediately. The **file icon needs one more step**,
 because VS Code file icons come entirely from the active icon theme and an
