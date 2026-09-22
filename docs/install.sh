@@ -24,6 +24,12 @@ set -eu
 
 REPO="${MANED_REPO:-FabianoDicheti/maned}"
 TOOLS="maned-run maned-serve maned-lint"
+# The hosted Bark worker, shipped since 0.2.1 so `host = "local"` works on a
+# plain install. Handled apart from $TOOLS: it has no --version flag, so the
+# delete-safety probe below identifies it by its usage line instead. Older
+# tarballs do not carry it, and the installer stays compatible with those.
+VM_TOOL="bark-vm"
+VM_ALIAS="maned-bark-here"
 
 VERSION=""
 PREFIX=""
@@ -59,6 +65,15 @@ fi
 if [ "$UNINSTALL" = 1 ]; then
   say "Removing Maned from $BINDIR"
   removed=0
+  # The VM answers --help, not --version, so it gets its own probe: the
+  # usage line names the flag nothing else on a PATH is likely to print.
+  vb="$BINDIR/$VM_TOOL"
+  if [ -f "$vb" ] && "$vb" --help 2>&1 | head -1 | grep -q -- "--max-payload"; then
+    va="$BINDIR/$VM_ALIAS"
+    [ -L "$va" ] && [ "$(readlink "$va")" = "$VM_TOOL" ] && rm -f "$va"
+    rm -f "$vb"
+    removed=$((removed + 1))
+  fi
   for t in $TOOLS; do
     b="$BINDIR/$t"
     [ -f "$b" ] || continue
@@ -182,7 +197,14 @@ for t in $TOOLS; do
   # install(1) unlinks and replaces, so this is safe even if a copy is running.
   install -m 0755 "$unpacked/bin/$t" "$BINDIR/$t"
 done
-info "installed  $TOOLS"
+installed="$TOOLS"
+if [ -f "$unpacked/bin/$VM_TOOL" ]; then
+  install -m 0755 "$unpacked/bin/$VM_TOOL" "$BINDIR/$VM_TOOL"
+  # Relative target: the pair moves together if $BINDIR is ever relocated.
+  ln -sf "$VM_TOOL" "$BINDIR/$VM_ALIAS"
+  installed="$installed $VM_TOOL $VM_ALIAS"
+fi
+info "installed  $installed"
 
 # --- PATH -------------------------------------------------------------------
 case ":$PATH:" in
@@ -206,4 +228,4 @@ say "Maned $found_version installed. Try:"
 say ""
 say "    maned-run --version"
 say ""
-say "Docs: https://fabianodicheti.github.io/maned-lang-docs/"
+say "Docs: https://maned-lang.com"
